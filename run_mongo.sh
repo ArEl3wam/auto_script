@@ -1,10 +1,15 @@
 #!/bin/bash
 
+if [ $# -ne 4 ]; then
+  echo "wrong number of arguments"
+  echo "run_mongo <port> <dbpath> <conda_path> <conda_env>"
+  exit 1
+fi
 
-port=27017
-conda_path=/project/med/Wired/Install/anaconda3/etc/profile.d/conda.sh # conda.sh path
-conda_env=awam_env
-dbpath=/home/ahmela3q/mongo_cdb
+port=$1
+dbpath=$2
+conda_path=$3
+conda_env=$4
 
 if ! netstat -tuln | grep ":$port " > /dev/null; then
     echo "starting mongodb on port $port..."

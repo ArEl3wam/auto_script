@@ -1,9 +1,15 @@
 #!/bin/bash
 
-port=8080
-conda_path=/project/med/Wired/Install/anaconda3/etc/profile.d/conda.sh # conda.sh path
-conda_env=awam_env
-project_path=/home/ahmela3q/testSuitesApps/testSuiteManager
+if [ $# -ne 4 ]; then
+  echo "wrong number of arguments"
+  echo "run_backend <port> <project_path> <conda_path> <conda_env>"
+  exit 1
+fi
+
+port=$1
+project_path=$2
+conda_path=$3
+conda_env=$4
 
 if ! netstat -tuln | grep ":$port " > /dev/null; then
     echo "starting backend server on port $port..."
@@ -16,3 +22,4 @@ if ! netstat -tuln | grep ":$port " > /dev/null; then
 else
   echo "something is already listening to port $port"
 fi
+

@@ -1,20 +1,28 @@
-from backend_checker import BackendChecker
-from database_checker import DatabaseChecker
 import subprocess
-
-//27651
-HOST = 'egc-med-tesla'
-
-subprocess.Popen(f"ssh -f {HOST} '/home/ahmela3q/testSuitesApps/auto_script/run_mongo.sh'", shell=True)
-subprocess.Popen(f"ssh -f {HOST} '/home/ahmela3q/testSuitesApps/auto_script/run_backend.sh' ", shell=True)
+from config import *
 
 
+
+# start database server
+subprocess.Popen(
+    f"ssh -f {HOST} '{RUN_MONGO_PATH} {MONGO_PORT} {MONGO_DBPATH} {CONDA_PATH} {CONDA_ENV}'",
+    shell=True
+)
+
+# start backend server
+subprocess.Popen(
+    f"ssh -f {HOST} '{RUN_BACKEND_PATH} {BACKEND_PORT} {BACKEND_PROJECT_PATH} {CONDA_PATH} {CONDA_ENV}' ",
+    shell=True
+)
+
+# start frontend server
 p = subprocess.Popen(
-    f"ssh -f {HOST} '/home/ahmela3q/testSuitesApps/auto_script/run_front.sh' ",
+    f"ssh -f {HOST} '{RUN_FRONTEND_PATH} {FRONTEND_PORT} {FRONTEND_PROJECT_BUILD_PATH} {CONDA_PATH} {CONDA_ENV}' ",
     shell=True,
-    stderr=subprocess.PIPE,
     stdout=subprocess.PIPE
 )
 
-stdout, stderr = p.communicate()
+stdout, _ = p.communicate()
 print(stdout.decode('utf-8'))
+
+
