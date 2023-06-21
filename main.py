@@ -1,8 +1,6 @@
 import subprocess
 from config import *
 
-
-
 # start database server
 subprocess.Popen(
     f"ssh -f {HOST} '{RUN_MONGO_PATH} {MONGO_PORT} {MONGO_DBPATH} {CONDA_PATH} {CONDA_ENV}'",
@@ -24,5 +22,3 @@ p = subprocess.Popen(
 
 stdout, _ = p.communicate()
 print(stdout.decode('utf-8'))
-
-
