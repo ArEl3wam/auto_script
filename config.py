@@ -21,6 +21,6 @@ BACKEND_PROJECT_PATH = "/home/ahmsal8h/main/testSuitesApps/testSuiteManager"
 
 # frontend configurations
 RUN_FRONTEND_PATH = path.join(RUN_DIR, "run_front.sh")
-KILL_FRONTEND_PATH = path.join("kill_front.sh")
+KILL_FRONTEND_PATH = path.join(RUN_DIR, "kill_front.sh")
 FRONTEND_PORT = 3001
 FRONTEND_PROJECT_BUILD_PATH = "/home/ahmsal8h/main/testSuitesApps/Siemens-MED-SW-Logger-System-FE/build"
